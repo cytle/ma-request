@@ -1,0 +1,21 @@
+{
+  "name": "wxapp-request",
+  "version": "0.0.0",
+  "description": "小程序request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
+  "license": "ISC",
+  "dependencies": {
+    "lodash.assign": "^4.2.0",
+    "lodash.isobject": "^3.0.2",
+    "lodash.isstring": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
