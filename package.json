@@ -8,6 +8,10 @@
     "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cytle/wxapp-request.git"
+  },
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
   "license": "ISC",
   "dependencies": {
