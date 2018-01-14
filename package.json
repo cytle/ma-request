@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "cd src && babel *.js -d ../lib",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",

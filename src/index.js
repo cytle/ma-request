@@ -25,7 +25,7 @@ const request = (arg1, arg2) => new Promise((resolve, reject) =>
     {},
     transOptions(arg1, arg2),
     {
-      success: resolve,
+      success: res => resolve(res.data),
       fail: reject,
     },
   )));
