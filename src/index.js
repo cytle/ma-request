@@ -1,6 +1,4 @@
-import isString from 'lodash.isstring';
-import isPlainObject from 'lodash.isplainobject';
-import assign from 'lodash.assign';
+import { isString, isPlainObject, assign } from 'lodash';
 
 function transOptions(arg1, arg2) {
   if (arg2 && !isPlainObject(arg2)) {
@@ -32,7 +30,9 @@ const request = (arg1, arg2) => new Promise((resolve, reject) =>
     },
   )));
 
-const requestMethod = method => (arg1, arg2) => request(assign(transOptions(arg1, arg2), { method }));
+const requestMethod = method =>
+  (arg1, arg2) =>
+    request(assign(transOptions(arg1, arg2), { method }));
 
 request.get = request;
 request.options = requestMethod('OPTIONS');

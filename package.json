@@ -2,18 +2,21 @@
   "name": "wxapp-request",
   "version": "0.0.0",
   "description": "小程序request",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "cd src && babel *.js -d ../lib",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
   "license": "ISC",
   "dependencies": {
-    "lodash.assign": "^4.2.0",
-    "lodash.isobject": "^3.0.2",
-    "lodash.isstring": "^4.0.1"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-plugin-lodash": "^3.3.2",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0"
