@@ -1,6 +1,6 @@
-import { isString, isPlainObject, assign } from 'lodash';
+import { isString, isPlainObject, assign, isFunction } from 'lodash';
 
-function transOptions(arg1, arg2) {
+let transOptions = (arg1, arg2) => {
   if (arg2 && !isPlainObject(arg2)) {
     throw new Error(`arg2 ${arg2} is not a plain object`);
   }
@@ -18,15 +18,41 @@ function transOptions(arg1, arg2) {
     assign(options, arg2);
   }
   return options;
+};
+
+export function setGlobalOptionsHandler(handler) {
+  if (!isFunction(handler)) {
+    throw new Error(`handler ${handler} is not a function`);
+  }
+  const oldHandler = transOptions;
+  transOptions = (arg1, arg2) => handler(oldHandler(arg1, arg2));
 }
 
-const request = (arg1, arg2) => new Promise((resolve, reject) =>
+let successHandler = res => Promise.resolve(res.data);
+export function setGlobalSuccessHandler(handler) {
+  if (!isFunction(handler)) {
+    throw new Error(`handler ${handler} is not a function`);
+  }
+  const oldHandler = successHandler;
+  successHandler = res => handler(oldHandler(res));
+}
+
+let failHandler = res => Promise.reject(res);
+export function setGlobalFailHandler(handler) {
+  if (!isFunction(handler)) {
+    throw new Error(`handler ${handler} is not a function`);
+  }
+  const oldHandler = failHandler;
+  failHandler = res => handler(oldHandler(res));
+}
+
+const request = (arg1, arg2) => new Promise(resolve =>
   wx.request(assign(
     {},
     transOptions(arg1, arg2),
     {
-      success: res => resolve(res.data),
-      fail: reject,
+      success: res => resolve(successHandler(res)),
+      fail: res => resolve(failHandler(res)),
     },
   )));
 
