@@ -1,6 +1,6 @@
 import { isString, isPlainObject, assign, isFunction } from 'lodash';
 
-let transOptions = (arg1, arg2) => {
+const transOptions = (arg1, arg2) => {
   if (arg2 && !isPlainObject(arg2)) {
     throw new Error(`arg2 ${arg2} is not a plain object`);
   }
@@ -20,12 +20,12 @@ let transOptions = (arg1, arg2) => {
   return options;
 };
 
-export function setGlobalOptionsHandler(handler) {
+let beforeRequestHandler = res => Promise.resolve(res.data);
+export function setGlobalBeforeRequestHandler(handler) {
   if (!isFunction(handler)) {
     throw new Error(`handler ${handler} is not a function`);
   }
-  const oldHandler = transOptions;
-  transOptions = (arg1, arg2) => handler(oldHandler(arg1, arg2));
+  beforeRequestHandler = handler;
 }
 
 let successHandler = res => Promise.resolve(res.data);
@@ -33,8 +33,7 @@ export function setGlobalSuccessHandler(handler) {
   if (!isFunction(handler)) {
     throw new Error(`handler ${handler} is not a function`);
   }
-  const oldHandler = successHandler;
-  successHandler = res => handler(oldHandler(res));
+  successHandler = handler;
 }
 
 let failHandler = res => Promise.reject(res);
@@ -42,19 +41,22 @@ export function setGlobalFailHandler(handler) {
   if (!isFunction(handler)) {
     throw new Error(`handler ${handler} is not a function`);
   }
-  const oldHandler = failHandler;
-  failHandler = res => handler(oldHandler(res));
+  failHandler = handler;
 }
 
-const request = (arg1, arg2) => new Promise(resolve =>
+const promisRequest = options => new Promise((resolve, reject) =>
   wx.request(assign(
     {},
-    transOptions(arg1, arg2),
+    options,
     {
-      success: res => resolve(successHandler(res)),
-      fail: res => resolve(failHandler(res)),
+      success: resolve,
+      fail: reject,
     },
   )));
+
+const request = (arg1, arg2) => Promise.resolve(transOptions(arg1, arg2))
+  .then(beforeRequestHandler)
+  .then(options => promisRequest(options).then(successHandler, failHandler));
 
 const requestMethod = method =>
   (arg1, arg2) =>
