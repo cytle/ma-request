@@ -1,6 +1,6 @@
 {
   "name": "wxapp-request",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "小程序request",
   "main": "lib/index.js",
   "scripts": {
