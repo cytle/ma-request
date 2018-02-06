@@ -56,7 +56,8 @@ const promisRequest = options => new Promise((resolve, reject) =>
 
 const request = (arg1, arg2) => Promise.resolve(transOptions(arg1, arg2))
   .then(beforeRequestHandler)
-  .then(options => promisRequest(options).then(successHandler, failHandler));
+  .then(options => promisRequest(options)
+    .then(res => successHandler(res, options), res => failHandler(res, options)));
 
 const requestMethod = method =>
   (arg1, arg2) =>
