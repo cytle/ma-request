@@ -1,16 +1,16 @@
 {
-  "name": "wxapp-request",
+  "name": "ma-request",
   "version": "0.1.0",
   "description": "小程序请求，返回一个`promise`.",
   "main": "lib/index.js",
   "scripts": {
     "build": "cd src && babel *.js -d ../lib",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "eslint src && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cytle/wxapp-request.git"
+    "url": "git@github.com:cytle/ma-request.git"
   },
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
   "license": "ISC",

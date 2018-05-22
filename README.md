@@ -1,11 +1,11 @@
-# wxapp-request
+# ma-request
 
 小程序请求，返回一个`promise`.
 
 ## Usage
 
 ```js
-import request from 'wxapp-request';
+import request from 'ma-request';
 
 // 基本用法仅为示例，并非真实的接口地址
 request('test.php', {
