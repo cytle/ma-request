@@ -1,7 +1,7 @@
 {
   "name": "wxapp-request",
   "version": "0.0.7",
-  "description": "小程序request",
+  "description": "小程序请求，返回一个`promise`.",
   "main": "lib/index.js",
   "scripts": {
     "build": "cd src && babel *.js -d ../lib",
