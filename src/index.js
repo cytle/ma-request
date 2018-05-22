@@ -20,7 +20,7 @@ const transOptions = (arg1, arg2) => {
   return options;
 };
 
-let beforeRequestHandler = res => Promise.resolve(res.data);
+let beforeRequestHandler = res => res;
 export function setGlobalBeforeRequestHandler(handler) {
   if (!isFunction(handler)) {
     throw new Error(`handler ${handler} is not a function`);
