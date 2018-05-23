@@ -23,7 +23,11 @@ request('test.php', {
   }, (res) => {
     console.log(res);
   });
+```
 
+### request
+
+```js
 async function demo() {
   const res1 = await request.get({
     url: 'test.php',
@@ -35,4 +39,18 @@ async function demo() {
     data: { x: '' },
   });
 }
+```
+
+### setGlobalHooks(hooks) 设置全局钩子
+
+```js
+setGlobalHooks({
+  before(options) {
+    // 拦截请求，最后需要返回一个promise
+  },
+  success(res, options) {
+    // 请求成功，可以处理结果，最后需要返回一个promise
+  },
+  fail(res, options) {},
+});
 ```
