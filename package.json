@@ -6,7 +6,9 @@
   "scripts": {
     "build": "cd src && babel *.js -d ../lib",
     "prepublishOnly": "eslint src && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -15,7 +17,8 @@
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.12"
+    "lodash": "^4.17.12",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -24,5 +27,6 @@
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0"
-  }
+  },
+  "snyk": true
 }
