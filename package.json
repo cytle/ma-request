@@ -15,7 +15,7 @@
   "author": "chaofan <canyoutle@gmail.com> (https://github.com/cytle)",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.12"
+    "lodash": "^4.17.17"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
